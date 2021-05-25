@@ -94,7 +94,7 @@ for (var i = 0; i < 10; i++) {
 }
 console.log(i, 'Second'); // 10 "Second"
 ```
-Here, the for loop will loop through the condition and it will return the values of 'i' with 'First' until the condition satisfies till '10' times it will return 'First'. And the console outside the for loop will take only one 'i' and it will print the 'Second' for once at 11th time. Eventhouth it is var or let.
+Here, the for loop will loop through the condition and it will return the values of 'i' with 'First' until the condition satisfies till '10' times it will return 'First'. And the console outside the for loop will take only one 'i' and it will print the 'Second' for once at 11th time. Because it has defined with 'var'.
 
 9. Go through the code below and write down the process of making decision about looking for the variable. Also write the output of the code below.
 
@@ -114,5 +114,5 @@ for (let i = 0; i < 10; i++) {
 console.log(i, 'Second'); // 10 "Second"
 ```
 ```
-Here, the for loop will loop through the condition and it will return the values of 'i' with 'First' until the condition satisfies till '10' times it will return 'First'. And the console outside the for loop will take only one 'i' and it will print the 'Second' for once at 11th time. Eventhouth it is var or let.
+Here, the for loop will loop through the condition and it will return the values of 'i' with 'First' until the condition satisfies till '10' times it will return 'First'. And it will through an error at 11th time because the loop has been defined with 'let' and it doesn't has an golobal scope.
 
