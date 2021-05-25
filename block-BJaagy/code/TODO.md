@@ -59,11 +59,9 @@ multiplyByTwo(2); //-> 4
 // Your code goes here
 
 function forEach(arr, cb) {
-  let final = [];
   for(let elm of arr) {
-    final.push(cb(arr));
+    cb(elm);
   }
-  return final;
 }
 
 // Test Your Code
@@ -83,8 +81,8 @@ console.log(alphabet); //prints 'abcd'
 function filter(arr, cb) {
   let final = [];
   for(let elm of arr) {
-    if (elm % 2 === 0) {
-      return cb(elm)
+    if (cb(elm)) {
+      final.push(elm)
     }
   }
   return final;
