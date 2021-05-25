@@ -6,7 +6,7 @@
 // Your code goes here
 function outer (str) {
   let sayHello = () => {
-    alert('input')
+    alert(str)
   }
   sayHello();
 }
@@ -18,10 +18,7 @@ function outer (str) {
 // Your code goes here
 function delay(cb, time) {
   return function() {
-    setTimeout((time) => {
-
-    }, 1000)
-  }
+    setTimeout(cb, time)
 }
 delay()
 ```
@@ -31,10 +28,9 @@ delay()
 ```js
 function lastName(lastname) {
   //  Your code goes here
-  return function inner(firstname) {
+  return function (firstname) {
     console.log(firstname + " " + lastname)
   }
-  inner();
 
 }  
 
@@ -54,12 +50,15 @@ lastNameLee('Lynne'); //logs 'Lynne Lee'
 ```js
 function storyWriter() {
   // Your code goes here
+  let story = "";
   return {
-    addWords : function () {
-      addWords();
+    addWords : function (word) {
+      story += word;
+      return story;
     },
     erase : function () {
-      erase();
+      story = "";
+       return story;
     },
   }
 }
@@ -84,17 +83,12 @@ When `forEach` function is called it returns another function. When the returned
 function forEach(arr) {
   // Your code goes here
   let index = 0;
-  return function inner() {
-    for (let elm of arr) {
-      return elm
-      index++;
-    }
+  return function () {
+    return arr[index++]
   }
-  return inner;
-
 }
 
-let next = [1, 2, 3, 4, 5];
+let next = forEach([1, 2, 3, 4, 5]);
 next(); // 1
 next(); // 2
 next(); // 3
@@ -109,7 +103,7 @@ The returned function accepts a string `prefix` and returns `prefix` and `title`
 ```js
 function addDesignation(title) {
   // your code goes here
-  return function preFix (str) {
+  return function  (str) {
     return str + " " + title
   }
 }
@@ -139,7 +133,7 @@ function changeSalary(currentSalary) {
       return currentSalary - 500;
     },
     current : function () {
-      return currentSalary
+      return currentSalary;
     }
   }
 }
@@ -165,10 +159,12 @@ function nameFactory (firstName, lastName) {
       return `${firstName} ${lastName}`
     },
     setFirstName : function (first) {
-      return `${first} ${lastName}`
+      firstName = first;
+      return `${firstName} ${lastName}`
     },
     setLastName : function (last) {
-      return `${firstName} ${last}`
+      lastName = last;
+      return `${firstName} ${lastName}`
     }
   }
 }
@@ -184,10 +180,12 @@ arya.setLastName('Lannister'); // "Jon Lannister"
 The returned function accepts a string (children) and returns the children with the tag you passed.
 
 ```js
-function createTag(elm) {
+function createTag(tag) {
   // your code goes here
-  return function (str) {
-    return str.style.fontStyle = fontStyle;
+  return function (child) {
+    let elm = document.createElement(tag);
+    elm.innerText = child;
+    return elm;
   }
 }
 
