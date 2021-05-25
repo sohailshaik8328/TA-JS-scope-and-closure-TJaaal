@@ -24,6 +24,8 @@ In the above code the parent function that is 'multiplyArrayByN' is an Higher or
 
 2. Create the execution context diagram of the above code snippet
 
+![](./img/image-1.jfif)
+
 3. Write a higher order function that accepts a number and a operation function (callback function). Call the callback function passing the number as argument and return the returned value.
 
 ```js
