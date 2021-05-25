@@ -12,11 +12,8 @@
 ```js
 function loop(start, test, update, body) {
   // Your code goes here
-  for(let i = start; i < test ; i++){
-    if (test[i]) {
-      return body;
-    }
-    update += body;
+  for(let i = start;  test(i) ; update(i)){
+    body(i);
   }
 }
 
@@ -37,10 +34,11 @@ Here's how it works. The function has an "accumulator value" which starts as the
 
 ```js
 function reduce(array, callback, initialValue = 0) {
+  let acc = initialValue;
   for (let i = 0 ; i < array.length ; i++) {  
-    initialValue += array[i];
+    acc = callback(acc, array[i]);
   }
-  return initialValue;
+  return acc;
 }
 
 // Test
@@ -54,12 +52,13 @@ reduce(nums, add, 0); //-> 8
 3. Construct a function intersection that compares input arrays and returns a new array with elements found in all of the inputs.
 
 ```js
-function intersection(arrays) {
-  for (let i = 0 ; i < arrays.length ; i++) {
-    if(arrays[i] === arrays.length[i]) {
-      return arrays[i]
-    }
+function intersection(...arrays) {
+  let first = arrays[0];
+  for (let i = 1 ; i < arrays.length ; i++) {
+    let second = arrays[i];
+    first = first.filter((elm) => second.includes(elm) )
   }
+  return first;
 }
 
 // Test
@@ -75,12 +74,13 @@ console.log(
 4. Construct a function `union` that compares input arrays and returns a new array that contains all elements. If there are duplicate elements, only add it once to the new array. Preserve the order of the elements starting from the first element of the first input array.
 
 ```js
-function union(arrays) {
-   for (let i = 0 ; i < arrays.length ; i++) {
-    if(arrays[i] !== arrays.length[i]) {
-      return arrays[i]
-    }
+function union(...arrays) {
+  let first = arrays[0];
+  for (let i = 1 ; i < arrays.length ; i++) {
+    let second = arrays[i];
+    first = first.filter((elm) => !second.includes(elm)).concact(second)
   }
+  return first;
 }
 
 // Test
