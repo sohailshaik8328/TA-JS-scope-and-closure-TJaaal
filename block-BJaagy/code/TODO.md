@@ -1,6 +1,30 @@
 1. Create a function by your choice that accepts a callback function.
 
+```js
+function higherOrder(a, b, cb) {
+  return cb(a, b);
+}
+
+function callBack(numA, numB) {
+  return numA + numB;
+}
+higherOrder(1, 2, callBack)
+```
+
 2. Create a function by you choice that returns a function reference.
+
+```js
+function parent(n, referenceFn) {
+  return referenceFn(n);
+}
+
+function callBack(num) {
+  return num + 5;
+}
+
+parent(2, callBack)
+
+```
 
 3. Create a higher order function called `map` that takes two inputs:
    - An array of numbers/string/boolean etc
@@ -10,6 +34,15 @@ Have `map` return a new array filled with values that are the result of the 'cal
 
 ```js
 // Your code goes here
+
+function map(arr, cb) {
+  let final = [];
+  for(let elm of arr) {
+    final.push(cb(elm))
+  }
+  return final;
+}
+
 
 // Test Your Code
 function multiplyByTwo(n) {
@@ -25,6 +58,14 @@ multiplyByTwo(2); //-> 4
 ```js
 // Your code goes here
 
+function forEach(arr, cb) {
+  let final = [];
+  for(let elm of arr) {
+    final.push(cb(arr));
+  }
+  return final;
+}
+
 // Test Your Code
 let alphabet = '';
 let letters = ['a', 'b', 'c', 'd'];
@@ -38,6 +79,16 @@ console.log(alphabet); //prints 'abcd'
 
 ```js
 // Test Your Code
+
+function filter(arr, cb) {
+  let final = [];
+  for(let elm of arr) {
+    if (elm % 2 === 0) {
+      return cb(elm)
+    }
+  }
+  return final;
+}
 
 var numbers = [1, 3, 5, 4, 7, 89, 234, 20];
 let even = filter(numbers, function (n) {
