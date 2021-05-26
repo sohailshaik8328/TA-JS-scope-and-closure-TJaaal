@@ -4,11 +4,12 @@
 
 ```js
 function objOfMatches(array1, array2, callback) {
-  let array1 = []
-  for(let i = 0 ; i < array1.length ; i++) {
-    array1.filter(elm => array2.includes(elm))
-  }
-  return array1;
+    return array1.reduce((acc, cv, index) => {
+     if (array2[index] ===  callback(cv)) {
+       acc[cv] = array2[index]
+     }
+      return acc;
+    }, {})
 }
 
 // TEST
@@ -26,10 +27,12 @@ console.log(
 2. Construct a function `multiMap` that will accept two arrays: an array of values and an array of callbacks. `multiMap` will return an object whose keys match the elements in the array of values. The corresponding values that are assigned to the keys will be arrays consisting of outputs from the array of callbacks, where the input to each callback is the key.
 
 ```js
-function multiMap(...arrVals, ...arrCallbacks) {
-  for (i = 0 ; i < arrVals.length ; i++) {
-    return arrCallBacks(arrVals);
-  }
+function multiMap(arrVals, arrCallbacks) {
+ return  arrVals.reduce((acc, cv) => {
+   let values =  arrCallbacks.map(fn => fn(cv));
+   acc[cv] = values;
+   return acc;
+  }, {})
 }
 
 // TEST
@@ -61,10 +64,13 @@ The final output from the third array will be matched agains the same indexed el
 
 ```js
 function objOfMatchesWithArray(array1, array2, callback) {
-  for (let i = 0 ; i < array1.length ; i++) {
-    array1.filter(elm => array2.includes(elm))
+  return array1.reduce((acc, cv) => {
+  let value = callback.reduce((acc, fn) => fn(acc), cv);
+  if(value === array2[index]) {
+    acc[cv] = array2[index]
   }
-  return array1;
+  return acc;
+  }, {})
 }
 
 // TEST
@@ -96,7 +102,13 @@ To build the object, `objectWithArrayValues` will pass each value of the first a
 In the final object the key will be the value form the first array like `hi` and value will be an array of values returned from each function like `['HI', 'Hi', 'HiHi']`
 
 ```js
-function objOfMatchesWithArray(array1, array2, callback) {}
+function objOfMatchesWithArray(array1, callback) {
+  return array1.reduce((acc, cv, index) => {
+    acc[cv] = callback.map(fn => fn(cv));
+
+    return acc;
+  }, {})
+}
 
 // TEST
 console.log(
@@ -140,10 +152,12 @@ The function `schedule` will execute the function at first index after the value
 ```js
 function schedule(callbacks, array) {
   if(callbacks.length !== array.length) {
-    alert('Invalid Input')
-  }else{
-    return indexOf(array)
+    alert('Invalid Input');
+    return;
   }
+  callbacks.forEach((fn, index) => {
+    setTimeout(fn, array[index] * 1000);
+  });
 }
 
 function sayHi() {
