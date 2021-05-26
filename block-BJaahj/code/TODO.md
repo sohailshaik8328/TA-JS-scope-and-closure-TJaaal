@@ -3,7 +3,13 @@
 1. Construct a function `objOfMatches` that accepts two arrays and a callback. `objOfMatches` will build an object and return it. To build the object, `objOfMatches` will test each element of the first array using the callback to see if the output matches the corresponding element (by index) of the second array. If there is a match, the element from the first array becomes a key in an object, and the element from the second array becomes the corresponding value.
 
 ```js
-function objOfMatches(array1, array2, callback) {}
+function objOfMatches(array1, array2, callback) {
+  let array1 = []
+  for(let i = 0 ; i < array1.length ; i++) {
+    array1.filter(elm => array2.includes(elm))
+  }
+  return array1;
+}
 
 // TEST
 console.log(
@@ -20,7 +26,11 @@ console.log(
 2. Construct a function `multiMap` that will accept two arrays: an array of values and an array of callbacks. `multiMap` will return an object whose keys match the elements in the array of values. The corresponding values that are assigned to the keys will be arrays consisting of outputs from the array of callbacks, where the input to each callback is the key.
 
 ```js
-function multiMap(arrVals, arrCallbacks) {}
+function multiMap(...arrVals, ...arrCallbacks) {
+  for (i = 0 ; i < arrVals.length ; i++) {
+    return arrCallBacks(arrVals);
+  }
+}
 
 // TEST
 console.log(
@@ -50,7 +60,12 @@ To build the object, `objOfMatchesWithArray` will test each element of the first
 The final output from the third array will be matched agains the same indexed element of second array. If there is a match, the element from the first array becomes a key in an object, and the element from the second array becomes the corresponding value.
 
 ```js
-function objOfMatchesWithArray(array1, array2, callback) {}
+function objOfMatchesWithArray(array1, array2, callback) {
+  for (let i = 0 ; i < array1.length ; i++) {
+    array1.filter(elm => array2.includes(elm))
+  }
+  return array1;
+}
 
 // TEST
 console.log(
@@ -123,7 +138,13 @@ Create a function named `schedule` which accept two arguments an array of functi
 The function `schedule` will execute the function at first index after the value in value on first index in second array. i.e execute `sayHi` after `1` second and `sayHello` after `2` second.
 
 ```js
-function schedule() {}
+function schedule(callbacks, array) {
+  if(callbacks.length !== array.length) {
+    alert('Invalid Input')
+  }else{
+    return indexOf(array)
+  }
+}
 
 function sayHi() {
   console.log('Hi');
