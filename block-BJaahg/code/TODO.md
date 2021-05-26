@@ -40,6 +40,7 @@ var one = addOne(0);
 var two = addOne(1);
 console.log(one, two);
 ```
+![](./img/image-1.jfif)
 
 4. Make a Execution Context Diagram for the following JS and write the output.
 
@@ -51,6 +52,8 @@ fucntion addOne(num){
 var two = addOne(1);
 console.log(one, two);
 ```
+![](./img/image-2.jfif)
+
 
 5. Make a Execution Context Diagram for the following JS and write the output.
 
@@ -62,6 +65,8 @@ fucntion addOne(num){
 var two = addOne(1);
 console.log(two);
 ```
+![](./img/image-3.jfif)
+
 
 6. Make a Execution Context Diagram for the following JS and write the output.
 
@@ -73,6 +78,8 @@ const addOne = (num) => {
 var two = addOne(1);
 console.log(two);
 ```
+![](./img/image-4.jfif)
+
 
 7. Make a Execution Context Diagram for the following JS and write the output.
 
@@ -84,6 +91,8 @@ const addOne = (num) => {
 var two = addOne(1);
 console.log(two);
 ```
+![](./img/image-5.jfif)
+
 
 8. What will be the output of the following
 
@@ -386,10 +395,7 @@ let allFunctions = [
   half,
 ];
 
-allFunctions.reduce((acc, cv) => {
-  acc += cv(acc)
-  return acc;
-})
+allFunction.reduce((acc, cv) => cv(acc), 100)
 
 // Answer is: 447
 ```
